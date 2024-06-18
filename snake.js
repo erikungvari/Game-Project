@@ -93,7 +93,7 @@ function drawCanvas() {
     });
 
     var img = new Image();
-    img.src = "Imgs/appel.jpg";
+    img.src = "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/af/Apple_JE3_BE3.png/revision/latest?cb=20200519232834";
     ctx.drawImage(img, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 }
 
