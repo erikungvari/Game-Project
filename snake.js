@@ -93,7 +93,7 @@ function drawCanvas() {
     });
 
     var img = new Image();
-    img.src = "imgs/appel.jpg";
+    img.src = "Imgs/appel.jpg";
     ctx.drawImage(img, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 }
 
