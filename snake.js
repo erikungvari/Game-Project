@@ -4,10 +4,19 @@ let canvas, ctx;
 let snake, food, gridSize, tileCount;
 let velocity = { x: 0, y: 0 };
 let gameLoop;
+let fruitImages = {
+    apple: new Image(),
+    carrot: new Image(),
+    chorus: new Image()
+};
+fruitImages.apple.src = "Imgs/appel.jpg";
+fruitImages.carrot.src = "Imgs/carrot.jpg";
+fruitImages.chorus.src = "Imgs/chorus.jpg";
+
 let fruits = [
-    { type: 'apple', icon: 'red' },
-    { type: 'banana', icon: 'yellow' },
-    { type: 'grape', icon: 'purple' }
+    { type: 'apple', color: 'red', image: fruitImages.apple },
+    { type: 'carrot', color: 'orange', image: fruitImages.carrot },
+    { type: 'chorus', color: 'purple', image: fruitImages.chorus }
 ];
 
 function startGame() {
@@ -16,14 +25,17 @@ function startGame() {
     gridSize = canvas.width / tileCount;
 
     snake = [{ x: Math.floor(tileCount / 2), y: Math.floor(tileCount / 2) }];
-    food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
-    velocity = { x: 0, y: 0 };
+    spawnFood();
 
     document.getElementById('menu').style.display = 'none';
     canvas.style.display = 'block';
 
     document.addEventListener('keydown', keyDown);
     gameLoop = setInterval(drawGame, 100);
+}
+function spawnFood() {
+    let randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+    food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount), ...randomFruit };
 }
 
 function keyDown(event) {
@@ -69,7 +81,7 @@ function updateSnake() {
     const head = { x: snake[0].x + velocity.x, y: snake[0].y + velocity.y };
 
     if (head.x === food.x && head.y === food.y) {
-        food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
+        spawnFood();
     } else {
         snake.pop();
     }
@@ -97,9 +109,7 @@ function drawCanvas() {
         ctx.fillRect(part.x * gridSize, part.y * gridSize, gridSize - 2, gridSize - 2);
     });
 
-    var img = new Image();
-    img.src = "Imgs/appel.jpg"
-    ctx.drawImage(img, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+    ctx.drawImage(food.image, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
