@@ -4,6 +4,11 @@ let canvas, ctx;
 let snake, food, gridSize, tileCount;
 let velocity = { x: 0, y: 0 };
 let gameLoop;
+let fruits = [
+    { type: 'apple', icon: 'red' },
+    { type: 'banana', icon: 'yellow' },
+    { type: 'grape', icon: 'purple' }
+];
 
 function startGame() {
     const mapSize = document.getElementById('mapSize').value;
@@ -87,7 +92,7 @@ function checkGameOver() {
 
 function drawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'pink';
+    ctx.fillStyle = "#3cbe09";
     snake.forEach(part => {
         ctx.fillRect(part.x * gridSize, part.y * gridSize, gridSize - 2, gridSize - 2);
     });
