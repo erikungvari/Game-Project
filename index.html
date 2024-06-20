@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>The Snek</title>
     <style>
         @keyframes pulse {
             0%, 100% {
@@ -13,6 +13,24 @@
                 scale: 1.1;
             }
         }
+
+        @media screen and (max-width: 600px){
+            #menu{
+                display: none;
+            }
+            #notice{
+                display: block;
+            }
+        }
+        @media screen and (min-width: 601px){
+            #menu{
+                display: block;
+            }
+            #notice{
+                display: none;
+            }
+        }
+
         header{
             position: fixed;
             top: 0;
@@ -21,13 +39,16 @@
             margin: 0% 10%;
             text-align: center;
             background-color: #99f175;
-            font-size: 18pt;
-            line-height: 18pt;
+            font-size: 3vh;
+            line-height: 3vh;
             border: 8px solid green;
             border-top: none;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-
+            overflow: hidden;
+        }
+        h1{
+            margin: 20px;
         }
         body {
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -39,16 +60,28 @@
             margin: 0;
             background-color: #c3ffab;
         }
-        #menu {
-            display: block;
-            height: 500px;
+        #menu{
             width: 500px;
+            height: 500px;
             border: 5px solid green;
             border-radius: 20px;
             background-color: #aaff89;
             text-align: center;
             font-size: 18pt;
             font-weight: bold;
+        }
+        #notice{
+            width: 80%;
+            height: 500px;
+            border: 5px solid green;
+            border-radius: 20px;
+            background-color: #aaff89;
+            text-align: center;
+            font-size: 2vh;
+            font-weight: bold;
+        }
+        #notice h2{
+            margin: 50% 25px;
         }
         #mapSize{
             margin-top: 150px;
@@ -107,6 +140,9 @@
         </select>
         <p>Use the arrow keys to control the Snek.</p>
         <button id="startButton"><img src="Imgs/Play button.png" alt="play button"></button>
+    </div>
+    <div id="notice">
+        <h2>Please switch over to wider screen in order to play.</h2>
     </div>
     <canvas id="gameCanvas"></canvas>
 
